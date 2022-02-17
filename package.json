@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "proxy": "http://localhost:5000",
   "private": true,
+  "engines": {
+    "node": "16.x"
+  },
   "dependencies": {
     "firebase": "6.0.2",
     "node-sass": "4.12.0",
