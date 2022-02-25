@@ -16,7 +16,7 @@ const CollectionItem = ({ item, addItem }) => {
                 style={{
                     backgroundImage: `url(${imageUrl})`
                 }}
-            >{console.log(imageUrl)}</div>
+            ></div>
             <div className="collection-footer">
                 <span className="name">{name}</span>
                 <span className="price">{`${price}$`}</span>

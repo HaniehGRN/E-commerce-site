@@ -1,6 +1,7 @@
 import React from "react";
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
+import { connect } from "react-redux";
 
 import { Auth, signInWithGoogle } from "../../firebase/firebase.utils";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -66,6 +67,12 @@ class SignIn extends React.Component {
             </div>
         );
     }
-}
+};
+
+// const mapDispatchToProps = dispatch => (
+//     {
+//         setCurrentUser: user => dispatch(setCurrentUser(user))
+//     }
+// );
 
 export default SignIn;

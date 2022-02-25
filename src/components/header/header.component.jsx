@@ -16,40 +16,48 @@ import { HeaderContainer, LogoContainer, OptionsContainer, OptionLink } from "./
 // import "./header.styles.scss";
 
 const Header = ({ currentUser, hidden }) => {
-    return (
-        <HeaderContainer>
-            <LogoContainer to="/">
-                <Logo className="logo" />
-            </LogoContainer>
-            <OptionsContainer>
-                <OptionLink to="/shop">
-                    SHOP
-                </OptionLink>
-                <OptionLink to="">
-                    CONTACT
-                </OptionLink>
-                {currentUser ? (
-                    <OptionLink as="div" onClick={() => Auth.signOut()}>
-                        SIGN OUT
-                    </OptionLink>
-                ) : (
-                    <OptionLink to='/signin'>
-                        SIGN IN
-                    </OptionLink>
-                )}
-                <CartIcon />
-            </OptionsContainer>
-            {
-                hidden ? null : <CartDropdwon />
-            }
-        </HeaderContainer>
-    );
+
+  const signOut = async () => {
+    console.log(currentUser);
+    await Auth.signOut().then(() => {
+      console.log("Successfully signed out.")
+    });
+  }
+  console.log(currentUser)
+  return (
+    <HeaderContainer>
+      <LogoContainer to="/">
+        <Logo className="logo" />
+      </LogoContainer>
+      <OptionsContainer>
+        <OptionLink to="/shop">
+          SHOP
+        </OptionLink>
+        <OptionLink to="">
+          CONTACT
+        </OptionLink>
+        {currentUser ? (
+          <OptionLink as="div" onClick={signOut} to="/">
+            SIGN OUT
+          </OptionLink>
+        ) : (
+          <OptionLink to='/signin' onClick={() => console.log(currentUser, hidden)}>
+            SIGN IN
+          </OptionLink>
+        )}
+        <CartIcon />
+      </OptionsContainer>
+      {
+        hidden ? null : <CartDropdwon />
+      }
+    </HeaderContainer >
+  );
 }
 const mapStateToProps = createStructuredSelector(
-    {
-        currentUser: selectCurrentUser,
-        hidden: selectCartHidden
-    }
+  {
+    currentUser: selectCurrentUser,
+    hidden: selectCartHidden
+  }
 )
 
 export default connect(mapStateToProps)(Header);
