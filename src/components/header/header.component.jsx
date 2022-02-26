@@ -18,12 +18,11 @@ import { HeaderContainer, LogoContainer, OptionsContainer, OptionLink } from "./
 const Header = ({ currentUser, hidden }) => {
 
   const signOut = async () => {
-    console.log(currentUser);
     await Auth.signOut().then(() => {
       console.log("Successfully signed out.")
     });
   }
-  console.log(currentUser)
+
   return (
     <HeaderContainer>
       <LogoContainer to="/">
@@ -41,7 +40,7 @@ const Header = ({ currentUser, hidden }) => {
             SIGN OUT
           </OptionLink>
         ) : (
-          <OptionLink to='/signin' onClick={() => console.log(currentUser, hidden)}>
+          <OptionLink to='/signin'>
             SIGN IN
           </OptionLink>
         )}
