@@ -26,13 +26,6 @@ export const fetchCollectionsStartAsynch = () => {
     return dispatch => {
         const collectionRef = collection(db, "collections");
         dispatch(fetchCollectionsStart());
-
-        // // const collectionRef = collection(db, "collections");
-        // onSnapshot(collectionRef, snapshot => {
-        //     const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
-        //     dispatch(fetchCollectionsSuccess(collectionsMap));
-        // });
-
         getDocs(collectionRef)
             .then(snapshot => {
                 const collectionsMap = convertCollectionsSnapshotToMap(snapshot);

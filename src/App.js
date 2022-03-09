@@ -20,22 +20,23 @@ class App extends React.Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    const { setCurrentUser } = this.props;
-    this.unsubscribeFromAuth = Auth.onAuthStateChanged(async userAuth => {
-      if (userAuth) {
-        const userRef = await createUserProfileDocument(userAuth);
-        onSnapshot(userRef, async snapShot => {
-          setCurrentUser({
-            id: snapShot.id,
-            ...snapShot.data()
-          });
-        });
-      }
-      else {
-        setCurrentUser(userAuth);
-      }
-      // setCurrentUser(userAuth);
-    });
+    // const { setCurrentUser } = this.props;
+    // this.unsubscribeFromAuth = Auth.onAuthStateChanged(async userAuth => {
+    //   if (userAuth) {
+    //     const userRef = await createUserProfileDocument(userAuth);
+    //     onSnapshot(userRef, async snapShot => {
+    //       setCurrentUser({
+    //         id: snapShot.id,
+    //         ...snapShot.data()
+    //       });
+    //     });
+    //   }
+    //   else {
+    //     setCurrentUser(userAuth);
+    //   }
+    //   // setCurrentUser(userAuth);
+    // });
+    
   }
 
   componentWillUnmount() {
