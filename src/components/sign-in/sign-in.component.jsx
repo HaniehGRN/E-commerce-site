@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 
 import { Auth, signInWithGoogle } from "../../firebase/firebase.utils";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { googleSignInStart } from "../../redux/user/user.actions";
+import { googleSignInStart, emailSignInStart } from "../../redux/user/user.actions";
 
 import "./sign-in.styles.scss";
 
@@ -22,15 +22,17 @@ class SignIn extends React.Component {
     handleSubmit = event => {
         event.preventDefault();
 
+        const { emailSignInStart } = this.props;
         const { email, password } = this.state;
 
-        try {
-            signInWithEmailAndPassword(Auth, email, password);
-            this.setState({ email: '', password: '' });
-        }
-        catch (error) {
-            console.log(error);
-        }
+        emailSignInStart(email, password);
+        // try {
+        //     signInWithEmailAndPassword(Auth, email, password);
+        //     this.setState({ email: '', password: '' });
+        // }
+        // catch (error) {
+        //     console.log(error);
+        // }
     }
 
     handleChange = event => {
@@ -40,7 +42,7 @@ class SignIn extends React.Component {
 
     render() {
         const { googleSignInStart } = this.props;
-        
+
         return (
             <div className="sign-in">
                 <h2>I already have an account</h2>
@@ -74,7 +76,8 @@ class SignIn extends React.Component {
 
 const mapDispatchToProps = dispatch => (
     {
-        googleSignInStart: () => dispatch(googleSignInStart())
+        googleSignInStart: () => dispatch(googleSignInStart()),
+        emailSignInStart: (email, password) => dispatch(emailSignInStart({ email, password }))
     }
 )
 

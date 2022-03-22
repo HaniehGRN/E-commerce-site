@@ -91,4 +91,13 @@ export const convertCollectionsSnapshotToMap = collectionsSnapshot => {
     }, {});
 }
 
+export const getCurrentUser = () => {
+    return new Promise((resolve, reject) => {
+        const unsubscribe = Auth.onAuthStateChanged(async userAuth => {
+            unsubscribe();
+            resolve(userAuth);
+        }, reject);
+    });
+}
+
 // export default firebase;
